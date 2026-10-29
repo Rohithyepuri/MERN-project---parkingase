@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased dark:bg-ink-950 dark:text-paper;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-900;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500/60 ring-offset-2 ring-offset-paper dark:ring-offset-ink-950;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-line dark:bg-line-dark;
+  }
+
+  input[type='datetime-local']::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface {
+    @apply rounded-2xl border border-line bg-white shadow-soft dark:border-line-dark dark:bg-ink-900;
+  }
+
+  .surface-muted {
+    @apply rounded-2xl border border-line bg-paper/70 dark:border-line-dark dark:bg-ink-850;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition placeholder:text-muted/60 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/25 disabled:cursor-not-allowed disabled:opacity-60 dark:border-line-dark dark:bg-ink-850 dark:text-paper dark:placeholder:text-muted;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[13px] font-medium text-ink/80 dark:text-paper/80;
+  }
+
+  .hint {
+    @apply mt-1 text-xs text-muted;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-lg bg-line/70 dark:bg-line-dark;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite] bg-gradient-to-r from-transparent via-white/50 to-transparent dark:via-white/5;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1.5 text-xs font-medium text-ink/80 transition hover:border-brand-400 hover:text-brand-700 dark:border-line-dark dark:bg-ink-850 dark:text-paper/80 dark:hover:text-brand-300;
+  }
+  .chip-active {
+    @apply border-brand-500 bg-brand-500/10 text-brand-700 dark:border-brand-400 dark:text-brand-300;
+  }
+
+  .kbd {
+    @apply rounded border border-line bg-paper px-1.5 py-0.5 font-mono text-[11px] text-muted dark:border-line-dark dark:bg-ink-850;
+  }
+
+  .divider {
+    @apply border-t border-line dark:border-line-dark;
+  }
+
+  .link {
+    @apply font-medium text-brand-700 underline-offset-4 transition hover:text-brand-600 hover:underline dark:text-brand-300;
+  }
+}
+
+/* Leaflet */
+.leaflet-container {
+  font-family: 'Inter', sans-serif;
+  background: #dfe6dd;
+  z-index: 0;
+}
+.dark .leaflet-container {
+  background: #0c120e;
+}
+.dark .leaflet-tile-pane {
+  filter: brightness(0.82) saturate(0.75) contrast(1.05);
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 16px;
+  box-shadow: 0 12px 40px -16px rgba(9, 13, 10, 0.5);
+}
+.leaflet-popup-content {
+  margin: 14px 16px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.75) !important;
+}
+.dark .leaflet-control-attribution {
+  background: rgba(9, 13, 10, 0.7) !important;
+  color: #9caaa0;
+}
+.dark .leaflet-control-attribution a {
+  color: #6ee7b7;
+}
+.leaflet-bar a {
+  color: #18211b;
+}
+
+.pk-pin {
+  background: transparent;
+  border: 0;
+}
+.pk-pin-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #059669;
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px -6px rgba(5, 150, 105, 0.7);
+  white-space: nowrap;
+  border: 2px solid #ecfdf5;
+  transition: transform 0.15s ease;
+}
+.pk-pin-inner:hover {
+  transform: translateY(-2px);
+}
+.pk-pin-inner.pk-pin-muted {
+  background: #4b5a50;
+  border-color: #e4e7e1;
+  box-shadow: 0 8px 20px -8px rgba(9, 13, 10, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-ticket,
+  .print-ticket * {
+    visibility: visible;
+  }
+  .print-ticket {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    box-shadow: none;
+  }
+}

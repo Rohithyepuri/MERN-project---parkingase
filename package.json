@@ -1,0 +1,15 @@
+{
+  "name": "parkease",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ParkEase — smart parking reservations, digital passes and facility operations (MERN)",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "seed": "npm --prefix server run seed",
+    "dev:api": "npm --prefix server run dev",
+    "dev:web": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "start": "npm --prefix server run start",
+    "test": "npm --prefix server run test:api"
+  }
+}

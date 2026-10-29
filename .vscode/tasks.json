@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. Install All Dependencies",
+      "type": "shell",
+      "command": "npm run install:all",
+      "problemMatcher": []
+    },
+    {
+      "label": "2. Seed Database",
+      "type": "shell",
+      "command": "npm run seed",
+      "problemMatcher": []
+    },
+    {
+      "label": "3. Start Backend (API :5000)",
+      "type": "shell",
+      "command": "npm run dev:api",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "4. Start Frontend (Web :5173)",
+      "type": "shell",
+      "command": "npm run dev:web",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
